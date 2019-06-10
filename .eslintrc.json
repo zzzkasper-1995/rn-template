@@ -1,4 +1,5 @@
 {
+    "parser": "babel-eslint",
     "extends": ["airbnb", "prettier", "prettier/react"],
     "rules": {
       "react/jsx-filename-extension": 0,
@@ -21,6 +22,9 @@
       "flow-vars/define-flow-type": 1,
       "flow-vars/use-flow-type": 1
     },
-    "plugins": ["prettier"]
+    "plugins": [
+      "prettier",
+      "flowtype"
+    ]
   }
   

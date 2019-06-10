@@ -18,6 +18,7 @@
     "lint": "yarn add eslint && yarn add prettier && yarn add eslint-config-airbnb && yarn add eslint-config-prettier && yarn add eslint-plugin-import && yarn add eslint-plugin-jsx-a11y && yarn add eslint-plugin-prettier && yarn add eslint-plugin-react"
   },
   "dependencies": {
+    "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^4.3.0",

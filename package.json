@@ -1,0 +1,50 @@
+{
+  "name": "tmpl-prj",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "updateApp": "yarn && cd ios && pod update && pod install && cd ..",
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "android": "react-native run-android",
+    "android1": "adb reverse tcp:8081 tcp:8081 && react-native run-android",
+    "android2": "cd ./android && ./gradlew app:assembleDebug && ./gradlew installDebug",
+    "ios5s": "react-native run-ios --simulator='iPhone 5s'",
+    "iosX": "react-native run-ios --simulator='iPhone X'",
+    "iosXs": "react-native run-ios --simulator='iPhone XS'",
+    "ios": "react-native run-ios",
+    "iosReal": "react-native run-ios --device",
+    "build-android": "cd ./android && ./gradlew app:assembleRelease",
+    "build-ios": "react-native run-ios --configuration Release",
+    "lint": "yarn add eslint && yarn add prettier && yarn add eslint-config-airbnb && yarn add eslint-config-prettier && yarn add eslint-plugin-import && yarn add eslint-plugin-jsx-a11y && yarn add eslint-plugin-prettier && yarn add eslint-plugin-react"
+  },
+  "dependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.13.0",
+    "prettier": "^1.18.2",
+    "react": "16.8.3",
+    "react-native": "0.59.9",
+    "react-native-navigation": "^2.21.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/runtime": "^7.4.5",
+    "babel-jest": "^24.8.0",
+    "eslint-plugin-flowtype": "^2.30.4",
+    "jest": "^24.8.0",
+    "metro-react-native-babel-preset": "^0.54.1",
+    "react-test-renderer": "16.8.3"
+  },
+  "standard": {
+    "plugins": [
+      "flowtype"
+    ]
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}

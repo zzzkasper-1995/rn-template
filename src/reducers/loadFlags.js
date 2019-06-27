@@ -1,4 +1,4 @@
-import {UPDATE_SCREEN_TYPE} from './action-type';
+import {UPDATE_SCREEN_TYPE} from '../store';
 
 // храним состояние всех запросов
 const initialState = {

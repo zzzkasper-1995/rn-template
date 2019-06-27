@@ -7,4 +7,3 @@ const rootReducer = combineReducers({
 
 export default rootReducer;
 export * from './app';
-export * from './action-type';

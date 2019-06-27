@@ -1,4 +1,4 @@
-import {UPDATE_SCREEN_TYPE, COUNTER_INCREMENT} from './action-type';
+import {UPDATE_SCREEN_TYPE, COUNTER_INCREMENT} from '../store';
 
 const initialState = {
 	screenType: undefined,

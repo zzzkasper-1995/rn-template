@@ -1,8 +1,8 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {compose, setDisplayName, pure} from 'recompose';
-import {updateScreenType, counterIncrement} from '../../core/reducers';
-import {screenTypeSelector} from '../../core/selectors';
+import {updateScreenType, counterIncrement} from '../../reducers';
+import {screenTypeSelector} from '../../selectors';
 import Main from './Component';
 
 function stateToProps(state) {
@@ -18,6 +18,7 @@ function dispatchToProps(dispatch) {
 		addCounter: bindActionCreators(counterIncrement, dispatch),
 	};
 }
+
 export default compose(
 	setDisplayName('Main'),
 	connect(

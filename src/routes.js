@@ -1,77 +1,30 @@
-export const settingsDefault = {
-	layout: {
-		backgroundColor: 'rgb(255,255,255,0)',
-	},
-	statusBar: {
-		backgroundColor: 'rgba(255,255,255,0)',
-		style: 'light',
-	},
-	topBar: {
-		visible: false,
-		drawBehind: true,
-		height: 0,
-	},
-	animations: {
-		setRoot: {
-			alpha: {
-				from: 0,
-				to: 1,
-				duration: 300,
-			},
-		},
-	},
-	bottomTabs: {
-		visible: true,
-		backgroundColor: 'white',
-		drawBehind: true,
-		translucent: true,
-	},
-	overlay: {
-		interceptTouchOutside: false,
-		handleKeyboardEvents: true,
-	},
-};
-
+// eslint-disable-next-line import/prefer-default-export
 export const rootLoadApp = {
 	root: {
+		// создаем стек навигатор
 		stack: {
+			// задаем id для корнегого узла
 			id: 'appStack',
-			children: [
-				{
-					component: {
-						id: 'initApp',
-						name: 'initApp',
-					},
-				},
-			],
+			// настройки
 			options: {
 				topBar: {
 					visible: false,
-					height: 0,
 				},
 			},
-		},
-	},
-};
-
-export const rootLoginApp = {
-	root: {
-		stack: {
-			id: 'appStack',
 			children: [
 				{
+					// первый элемент в стеке
 					component: {
-						id: 'login',
-						name: 'login',
+						id: 'Main',
+						name: 'Main',
+						// сюда можно прокинуть props
+						// passProps: {
+						// 	text: 'This is tab 1',
+						// 	myFunction: () => 'Hello from a function!',
+						// },
 					},
 				},
 			],
-			options: {
-				topBar: {
-					visible: false,
-					height: 0,
-				},
-			},
 		},
 	},
 };

@@ -1,10 +1,5 @@
 /** @module Navigation */
-
-import {Navigation} from 'react-native-navigation';
-import {Provider} from 'react-redux';
-import configureStore from '../../store';
-
-const {store} = configureStore();
+import {Navigation as Nav} from 'react-native-navigation';
 
 let lastNameScreen = '';
 let stack = []; // для стэк навигации (орентировочный маршрут)
@@ -12,21 +7,31 @@ let isWait = false; // для игнорирования сторонних оп
 const timeWait = 300; // ms
 
 /**
+ * Регистрация компонентов
+ * @param {String} name имя компонента
+ * @param {Object} component компонент
+ */
+function registerComponent(name, component, provider, store) {
+	Nav.registerComponentWithRedux(name, () => component, provider, store);
+}
+
+/**
  * Переход вперед по стек навигации
  * @param {String} currentID имя компонента с которого делается переход
  * @param {String} nameScreen имя компонента на который делается переход
+ * @param {Object} passProps при навигации можно прокинуть props на экран
  * @param {Object} options настройки перехода см(док wix/react-native-navigation)
  */
-const push = (currentID, nameScreen, options) => {
-	if (lastNameScreen !== nameScreen) {
-		lastNameScreen = nameScreen;
-		stack.push(nameScreen);
-		Navigation.push(currentID, {
+const push = (currentID: string, name: string, passProps: Object, options: Object) => {
+	if (lastNameScreen !== name) {
+		lastNameScreen = name;
+		stack.push(name);
+		Nav.push(currentID, {
 			component: {
-				id: nameScreen,
-				name: nameScreen,
+				name,
+				passProps,
 			},
-			options: options || {},
+			options,
 		});
 	}
 };
@@ -41,7 +46,7 @@ const pop = (currentID, options) => {
 		isWait = true;
 		lastNameScreen = '';
 		stack.pop();
-		Navigation.pop(currentID, options);
+		Nav.pop(currentID, options);
 		setTimeout(() => (isWait = false), timeWait);
 	}
 };
@@ -55,7 +60,7 @@ const popToRoot = currentID => {
 		isWait = true;
 		lastNameScreen = '';
 		stack = [];
-		Navigation.popToRoot(currentID);
+		Nav.popToRoot(currentID);
 		setTimeout(() => (isWait = false), timeWait);
 	}
 };
@@ -74,10 +79,10 @@ const popTo = (currentID = 1, options) => {
 			}
 			const l = stack.length - 1;
 			lastNameScreen = stack[l];
-			Navigation.popTo(lastNameScreen, options);
+			Nav.popTo(lastNameScreen, options);
 		} else {
 			lastNameScreen = currentID;
-			Navigation.popTo(currentID, options);
+			Nav.popTo(currentID, options);
 		}
 		setTimeout(() => (isWait = false), timeWait);
 	}
@@ -91,7 +96,7 @@ const popTo = (currentID = 1, options) => {
  * @param {Object} options почие настройки (см wix/react-native-navigation)
  */
 const navigateTab = (screenID, nameScreen, options) => {
-	Navigation.mergeOptions(screenID, {
+	Nav.mergeOptions(screenID, {
 		bottomTabs: {
 			currentTabId: nameScreen,
 			...options,
@@ -104,7 +109,7 @@ const navigateTab = (screenID, nameScreen, options) => {
  * @param {Object} root дерево навигации (RNN)
  */
 const setRoot = root => {
-	Navigation.setRoot(root);
+	Nav.setRoot(root);
 };
 
 /**
@@ -113,7 +118,7 @@ const setRoot = root => {
  * @param {*} options
  */
 const mergeOptions = (screenID, options) => {
-	Navigation.mergeOptions(screenID, options);
+	Nav.mergeOptions(screenID, options);
 };
 
 const setLastNameScreen = nameScreen => {
@@ -125,17 +130,8 @@ const setLastNameScreen = nameScreen => {
  * @param {Object} self контекст
  */
 const bindComponent = self => {
-	Navigation.events().bindComponent(self);
+	Nav.events().bindComponent(self);
 };
-
-/**
- * Регистрация компонентов
- * @param {String} name имя компонента
- * @param {Object} component компонент
- */
-function registerComponent(name, component) {
-	Navigation.registerComponentWithRedux(name, () => component, Provider, store);
-}
 
 /**
  * Отслеживает последовательность открытия экранов пользователем
@@ -145,7 +141,7 @@ function registerComponent(name, component) {
 const traking = (root, service) => {
 	const {analytic} = service;
 	stack.push(root);
-	Navigation.events().registerComponentDidAppearListener(({componentId, componentName}) => {
+	Nav.events().registerComponentDidAppearListener(({componentId, componentName}) => {
 		analytic.pushScreen(componentName);
 		lastNameScreen = analytic.getLastItem();
 	});
@@ -157,7 +153,7 @@ const traking = (root, service) => {
  * @param {Object} options  параметры
  */
 const showOverlay = (name, options) => {
-	Navigation.showOverlay({
+	Nav.showOverlay({
 		component: {
 			id: name,
 			name,
@@ -171,17 +167,11 @@ const showOverlay = (name, options) => {
  * @param {String} name имя/ид  компонента
  */
 const dismissOverlay = name => {
-	Navigation.dismissOverlay(name);
+	Nav.dismissOverlay(name);
 };
 
-/**
- * Обернуть метод в функцию генератор собятия
- * @param {Function} action функция которую необходимо обернуть
- */
-const storeDispatch = action => store.dispatch(action);
-
-export {
-	Navigation,
+const Navigation = {
+	Nav,
 	registerComponent,
 	pop,
 	popTo,
@@ -196,5 +186,6 @@ export {
 	traking,
 	showOverlay,
 	dismissOverlay,
-	storeDispatch,
 };
+
+export {Navigation};

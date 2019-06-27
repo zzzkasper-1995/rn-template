@@ -1,6 +1,5 @@
 import React from 'react';
-import {Navigation} from 'react-native-navigation';
-import {Text, View, I} from '../../../library';
+import {Text, View, I, Navigation} from '../../../library';
 import styles from './styles';
 
 type Props = {counter: number, addCounter: Function};
@@ -21,11 +20,8 @@ export default (props: Props) => {
 			</Text>
 			<Text
 				onPress={() => {
-					Navigation.push('appStack', {
-						component: {
-							id: 'NotMain',
-							name: 'NotMain',
-						},
+					Navigation.push('appStack', 'NotMain', {
+						text: 'Pushed screen',
 					});
 				}}
 			>

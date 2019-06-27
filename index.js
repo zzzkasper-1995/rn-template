@@ -6,8 +6,25 @@ Navigation.registerComponent('navigation.playground.WelcomeScreen', () => App);
 Navigation.events().registerAppLaunchedListener(() => {
 	Navigation.setRoot({
 		root: {
-			component: {
-				name: 'navigation.playground.WelcomeScreen',
+			stack: {
+				id: 'appStack',
+				options: {
+					topBar: {
+						visible: false,
+					},
+				},
+				children: [
+					{
+						component: {
+							id: 'Main',
+							name: 'Main',
+							passProps: {
+								text: 'This is tab 1',
+								myFunction: () => 'Hello from a function!',
+							},
+						},
+					},
+				],
 			},
 		},
 	});

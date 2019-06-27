@@ -1,5 +1,4 @@
 import React from 'react';
-import {Navigation} from 'react-native-navigation';
 import {Text, View, I} from '../../../library';
 import styles from './styles';
 
@@ -18,18 +17,6 @@ export default (props: Props) => {
 			</Text>
 			<Text i18n onPress={addCounter}>
 				Увеличить счетчик на 1
-			</Text>
-			<Text
-				onPress={() => {
-					Navigation.push('appStack', {
-						component: {
-							id: 'NotMain',
-							name: 'NotMain',
-						},
-					});
-				}}
-			>
-				sadasd
 			</Text>
 		</View>
 	);

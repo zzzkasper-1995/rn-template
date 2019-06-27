@@ -2,7 +2,7 @@
 import {Linking} from 'react-native';
 import moment from 'moment';
 import 'moment/locale/ru';
-import {I} from '../I18n';
+import {I} from '../UI/I18n';
 
 moment.locale('ru');
 

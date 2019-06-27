@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {Color} from '../Color';
+import {Color} from '../Theme/Color';
 import {Theme} from '../Theme';
 
 export default StyleSheet.create({
@@ -7,6 +7,6 @@ export default StyleSheet.create({
 		color: Color.BLACK,
 		fontSize: 14,
 		lineHeight: 16,
-		fontWeight: Theme.fontWeight.regular,
+		// fontWeight: Theme.fontWeight.regular,
 	},
 });

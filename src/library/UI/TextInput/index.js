@@ -72,7 +72,7 @@ KasperTextInput.propTypes = {
 	autoFocus: PropTypes.bool,
 	onChangeText: PropTypes.func,
 	input: PropTypes.object,
-	keyboardType: PropTypes.string
+	keyboardType: PropTypes.string,
 	style: PropTypes.any,
 };
 

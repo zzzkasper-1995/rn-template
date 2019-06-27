@@ -4,7 +4,7 @@ import {TouchableOpacity, ActivityIndicator} from 'react-native';
 import {Icon} from '../Icon';
 import {Text} from '../Text';
 import {View} from '../View';
-import {Color} from '../Color';
+import {Color} from '../Theme/Color';
 
 import styles from './styles';
 
